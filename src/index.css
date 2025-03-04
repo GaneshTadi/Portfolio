@@ -1,0 +1,59 @@
+/* src/index.css */  
+@import "tailwindcss";  
+
+/* Custom theme color definition */  
+@layer base {  
+  :root {  
+    --color-primary: 144, 12, 63; /* #900C3F in RGB format */  
+  }  
+}  
+
+/* Custom styles below */  
+html {  
+  scroll-behavior: smooth;  
+}  
+
+/* Common section spacing */  
+.section-padding {  
+  padding-top: 4rem;  
+  padding-bottom: 4rem;  
+}  
+
+@media (min-width: 768px) {  
+  .section-padding {  
+    padding-top: 6rem;  
+    padding-bottom: 6rem;  
+  }  
+}  
+
+/* Common buttons */  
+.btn-primary {  
+  @apply px-6 py-3 bg-[#900C3F] text-white font-medium rounded-lg shadow-md hover:bg-[#7A0A35] transition duration-200;  
+}  
+
+.btn-secondary {  
+  @apply px-6 py-3 border border-[#900C3F] text-[#900C3F] font-medium rounded-lg hover:bg-[#FFF0F5] transition duration-200;  
+}  
+
+/* Form focus states */  
+input:focus, textarea:focus {  
+  @apply outline-none ring-2 ring-[#900C3F];  
+}  
+
+/* Update all hover states with the new theme color */  
+.hover\:text-theme:hover {  
+  @apply text-[#900C3F];  
+}  
+
+/* Additional utility classes for the new theme color */  
+.text-theme {  
+  color: #900C3F;  
+}  
+
+.bg-theme {  
+  background-color: #900C3F;  
+}  
+
+.border-theme {  
+  border-color: #900C3F;  
+}  
