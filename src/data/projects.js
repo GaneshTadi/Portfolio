@@ -305,5 +305,146 @@ export const projects = [
     ],  
     "challenges": "Accessing EPFO data requires strict compliance with privacy regulations and secure handling of personal information. I implemented a comprehensive consent management system and data anonymization process that ensured all verifications were conducted with proper authorization while protecting candidate information.",  
     "role": "Integration Specialist responsible for secure API implementation, compliance features, and developing the verification comparison algorithm."  
-}   
+},
+  {
+  id: 15,
+  title: 'Manufacturing Process Automation with Zoho One',
+  description: 'Enterprise-grade manufacturing automation including HR, payroll, recruitment, support, and production workflows with advanced integrations.',
+  longDescription: 'A manufacturing organization faced challenges with disconnected systems across HR, production, finance, and customer support. I designed a scalable Zoho One architecture integrating all departments with custom automation, API layers, and real-time data synchronization.',
+  category: 'zoho',
+  technologies: [
+    'Zoho CRM', 'Zoho Inventory', 'Zoho Books', 'Zoho Creator',
+    'Zoho People', 'Zoho Payroll', 'Zoho Recruit', 'Zoho Desk',
+    'Zoho Campaigns', 'Zoho Assist',
+    'Deluge', 'Client Script', 'JavaScript', 'Node.js', 'Zoho Catalyst', 'REST APIs'
+  ],
+  features: [
+    'End-to-end order-to-production workflow automation using CRM + Creator',
+    'Client Script-based UI enhancements for real-time validation and user experience',
+    'Real-time inventory and warehouse automation using Zoho Inventory',
+    'Employee lifecycle and payroll automation using Zoho People & Payroll',
+    'Recruitment pipeline automation using Zoho Recruit',
+    'Customer support system using Zoho Desk with SLA automation',
+    'Remote diagnostics and troubleshooting using Zoho Assist',
+    'Marketing automation using Zoho Campaigns',
+    'Custom API layer built using Zoho Catalyst and Node.js',
+    'Integration with NetSuite for financial and ERP data synchronization',
+    'Automated invoicing and reporting with Zoho Books',
+    'Production dashboards and analytics'
+  ],
+  challenges: 'Synchronizing real-time production, HR, and financial data across multiple systems.',
+  solution: 'Built middleware using Node.js and Zoho Catalyst APIs to integrate Zoho apps with external ERP systems like NetSuite.',
+  integrations: [
+    'Google Workspace', 'Microsoft 365', 'OneDrive',
+    'NetSuite ERP', 'Logistics APIs', 'IoT Systems'
+  ],
+  role: 'Senior Zoho Solution Architect & Full Stack Developer'
+},
+{
+  id: 16,
+  title: 'Healthcare Management System with Zoho One',
+  description: 'Secure healthcare system with patient lifecycle management, billing, and support automation.',
+  longDescription: 'Healthcare provider needed a secure and scalable system for managing patients, billing, and support. I implemented a Zoho-based solution with custom APIs and automation workflows.',
+  category: 'zoho',
+  technologies: [
+    'Zoho CRM', 'Zoho Creator', 'Zoho Books', 'Zoho Desk', 'Zoho Campaigns',
+    'Deluge', 'Client Script', 'JavaScript', 'Node.js', 'Zoho Catalyst'
+  ],
+  features: [
+    'Patient lifecycle management using Zoho CRM',
+    'Custom EMR system built using Zoho Creator',
+    'Client Script for real-time form validations and UI improvements',
+    'Automated billing using Zoho Books',
+    'Patient support ticketing system using Zoho Desk',
+    'Automated reminders via email/SMS',
+    'Custom APIs using Node.js and Zoho Catalyst for data exchange',
+    'Campaign automation for patient engagement'
+  ],
+  challenges: 'Handling sensitive healthcare data and ensuring secure integrations.',
+  solution: 'Implemented secure API architecture using Zoho Catalyst and Node.js with role-based access.',
+  integrations: [
+    'Government Health APIs', 'Twilio', 'Google Calendar', 'Email Systems'
+  ],
+  role: 'Zoho Solution Architect & Backend Developer'
+},
+{
+  id: 17,
+  title: 'Pharmaceutical Sales & Compliance Automation',
+  description: 'Compliance-driven pharma CRM system with sales tracking and regulatory automation.',
+  longDescription: 'Pharma company required strict compliance tracking and sales monitoring. I built a Zoho-based solution with automation and centralized dashboards.',
+  category: 'zoho',
+  technologies: [
+    'Zoho CRM', 'Zoho Books', 'Zoho Analytics', 'Zoho Campaigns',
+    'Deluge', 'Client Script', 'JavaScript', 'Node.js', 'Zoho Catalyst'
+  ],
+  features: [
+    'Sales and territory management using Zoho CRM',
+    'Client Script for validation of compliance data',
+    'Distributor management system',
+    'Compliance tracking with automated alerts',
+    'Financial tracking using Zoho Books',
+    'Marketing campaigns for product promotions',
+    'Custom reporting dashboards using Zoho Analytics',
+    'API integrations using Node.js and Catalyst'
+  ],
+  challenges: 'Ensuring compliance and audit tracking across multiple regions.',
+  solution: 'Developed centralized compliance engine with automated workflows and audit logs.',
+  integrations: [
+    'Government APIs', 'Excel Automation', 'Email Systems'
+  ],
+  role: 'Zoho Automation Engineer & Integration Developer'
+},
+{
+  id: 18,
+  title: 'Hospitality Operations Management System',
+  description: 'Automated hospitality platform with booking, support, and customer experience optimization.',
+  longDescription: 'Hospitality business needed a centralized system for bookings, operations, and customer engagement. Implemented Zoho-based automation and integrations.',
+  category: 'zoho',
+  technologies: [
+    'Zoho CRM', 'Zoho Creator', 'Zoho Books', 'Zoho Desk', 'Zoho Campaigns',
+    'Deluge', 'Client Script', 'JavaScript', 'Node.js'
+  ],
+  features: [
+    'Booking and reservation management system',
+    'Client Script for dynamic pricing and booking validations',
+    'Customer support system using Zoho Desk',
+    'Automated invoicing and billing',
+    'Marketing campaigns and promotions',
+    'Staff workflow and task management',
+    'Analytics dashboards for revenue tracking'
+  ],
+  challenges: 'Managing real-time bookings and dynamic customer requests.',
+  solution: 'Built automated workflows and integrated real-time communication systems.',
+  integrations: [
+    'Google Maps', 'Twilio', 'Payment Gateways'
+  ],
+  role: 'Zoho Consultant & Full Stack Developer'
+},
+{
+  id: 19,
+  title: 'EdTech Learning Management & CRM System',
+  description: 'Scalable EdTech platform with student lifecycle, communication, and learning automation.',
+  longDescription: 'EdTech company needed a scalable system for managing students, courses, and communication. Built a Zoho-powered platform with automation and integrations.',
+  category: 'zoho',
+  technologies: [
+    'Zoho CRM', 'Zoho Creator', 'Zoho Books', 'Zoho Campaigns', 'Zoho Desk',
+    'Deluge', 'Client Script', 'JavaScript', 'Node.js', 'Zoho Catalyst'
+  ],
+  features: [
+    'Student onboarding and CRM automation',
+    'Course tracking system using Zoho Creator',
+    'Client Script for dynamic UI and validations',
+    'Student support system using Zoho Desk',
+    'Email/SMS automation campaigns',
+    'Fee and payment tracking using Zoho Books',
+    'Custom APIs for LMS integration using Node.js and Catalyst',
+    'Performance analytics dashboards'
+  ],
+  challenges: 'Handling large-scale student data and integrations with external LMS.',
+  solution: 'Built scalable architecture using Zoho CRM + Creator + Catalyst APIs.',
+  integrations: [
+    'Google Classroom', 'Zoom', 'Twilio', 'Payment APIs'
+  ],
+  role: 'Full Stack Zoho Developer & Solution Architect'
+}
 ];  
