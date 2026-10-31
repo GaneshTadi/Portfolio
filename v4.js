@@ -2,7 +2,6 @@
 import { I, esc } from "./icons.js";
 import { waLink, WA_DISPLAY, WA_NUMBER } from "./ui.js";
 import { PHOTO, AWARD } from "./sections.js";
-import { initViewMore } from "./v5.js";
 
 const enc = (p) => p.split("/").map(encodeURIComponent).join("/");
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -16,18 +15,13 @@ export function awardsHTML() {
   return `<div class="sh rv"><span class="eyebrow">Awards &amp; recognition</span><h2 id="awT">Web Wizard Award: Lead Developer at Nexivo</h2><p>Recognised by the CEO of Nexivo Consulting Pvt. Ltd. for the website work I led as Lead Developer.</p></div>
 <div class="aw rv">
  <figure class="aw-me"><span class="ph-lock aw-ph" data-protect><img src="${photo}" alt="Tadi Ganesh, Senior Zoho Developer" width="400" height="400" loading="lazy" decoding="async" draggable="false" oncontextmenu="return false"></span>
-  <figcaption><b>Tadi Ganesh</b><span>Lead Developer at Nexivo (Feb 2023 - Oct 2025)</span><em>${I.spark}<span>Web Wizard Award winner</span></em></figcaption></figure>
+  <figcaption><b>Tadi Ganesh</b><span>Lead Developer at Nexivo</span><small>Feb 2023 - Oct 2025</small></figcaption></figure>
  <div class="aw-main">
-  <span class="aw-badge">${I.spark}<span>The Web Wizard Award</span></span>
+  <span class="aw-badge">${I.spark}<span>Web Wizard Award</span></span>
   <h3>For Excellence in Website Development</h3>
-  <div class="aw-role" aria-label="Role at the time of the award"><span>${I.building}Lead Developer, Nexivo</span><span>${I.cal}19 September 2025</span></div>
-  <div class="vm" data-vm data-vm-lines="4" data-vm-label="about the award">
-   <div class="vm-body">
-    <p>I received this award as the <b>Lead Developer at Nexivo</b>, presented by <b>Ramakrishna Karolla, CEO of Nexivo Consulting Pvt. Ltd.</b>, in recognition of my creativity, technical expertise and dedication to building a seamless digital experience.</p>
-    <p>It also recognised the strong, reliable online presence I led for Nexivo, one that reflects the vision and professionalism of the company. I grew at Nexivo from Technical Developer to Senior Developer to Lead Developer of the product team.</p>
-    <ul class="aw-meta"><li>${I.building}<span>Nexivo Consulting Pvt. Ltd., Hyderabad</span></li><li>${I.cal}<span>19 September 2025</span></li><li>${I.doc}<span>Presented by Ramakrishna Karolla, CEO</span></li><li>${I.spark}<span>Role: Lead Developer &amp; Full-Stack Developer</span></li></ul>
-   </div>
-  </div>
+  <p>I received this award as <b>Lead Developer at Nexivo</b> for my creativity, technical expertise and dedication to building a seamless digital experience.</p>
+  <p>It also recognised the strong, reliable online presence I led for Nexivo, one that reflects the vision and professionalism of the company.</p>
+  <dl class="aw-facts"><div><dt>${I.cal}<span>Awarded</span></dt><dd>19 September 2025</dd></div><div><dt>${I.doc}<span>Presented by</span></dt><dd>Ramakrishna Karolla, CEO</dd></div><div><dt>${I.building}<span>Company</span></dt><dd>Nexivo Consulting Pvt. Ltd., Hyderabad</dd></div></dl>
   <button type="button" class="btn btn-p aw-btn" data-zoom="${award}" data-alt="${alt}" aria-label="View the award certificate larger">View certificate</button>
  </div>
  <figure class="aw-cert"><button type="button" class="lz aw-cb" data-zoom="${award}" data-alt="${alt}" aria-label="View the award certificate larger"><img src="${award}" alt="The Web Wizard Award certificate awarded to Ganesh Tadi, Lead Developer, by Nexivo Consulting Pvt. Ltd. on 19.09.2025, signed by Ramakrishna Karolla, CEO" width="1280" height="853" loading="lazy" decoding="async"></button><figcaption>Tap the certificate to view it full size</figcaption></figure>
@@ -83,5 +77,3 @@ export function initMobileBar() {
   document.body.appendChild(bar);
   document.body.classList.add("has-mbar");
 }
-
-export { initViewMore };
