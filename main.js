@@ -3,7 +3,8 @@ import { progressBar, particles, rotator, countUps, pointerFx } from "./fx.js";
 import { patchData, MORE_PROJECTS, roleHTML, asmHTML, initExt, extDetailParts, expExtra, migBlock, initMig, IMG } from "./sections.js";
 import { I, techStrip, chipsI, logoBtn, techIcon, iconImg } from "./icons.js";
 import { initUI, renderFooter, waLink, WA_DISPLAY } from "./ui.js";
-import { awardsHTML, footerHTML, initQuickJump, initMobileBar } from "./v4.js";
+import { awardsHTML, footerHTML, initQuickJump, initMobileBar, initViewMore } from "./v4.js";
+import { protectPhotos } from "./v5.js";
 patchData(EXP, CATS);
 
 const $ = (i) => document.getElementById(i);
@@ -56,7 +57,7 @@ function home() {
   rotator($("rot"), ["lead Zoho projects", "design blueprints and solutions", "build Zoho extensions", "migrate terabytes of data", "integrate Ideabox AI with Zoho", "automate multi-country operations"]);
   particles($("fxc"));
   $("respGrid").innerHTML = RESP.map((r) => `<article class="card rc rv"><div class="ic">${r.ic}</div><h3>${esc(r.t)}</h3><p>${esc(r.brief)}</p><ul class="mini">${r.pts.map((p) => `<li>${esc(p)}</li>`).join("")}</ul><a class="more" href="detail.html?type=resp&id=${r.id}">View More <span>&rarr;</span></a></article>`).join("");
-  $("tl").innerHTML = EXP.map((e) => `<article class="tli rv${e.cur ? " cur" : ""}"><span class="dot"></span><div class="card"><div class="tl-top"><div class="tl-id">${logoBtn(e.logo, e.co.split(" - ")[0], "logo-co")}<div><h3>${esc(e.pos)}</h3><div class="co">${I.building}<span>${esc(e.co)}</span></div><div class="loc">${I.pin}<span>${esc(e.loc)}</span></div></div></div><span class="dur">${I.cal}<span>${esc(e.dur)}</span>${e.cur ? "<em>Current</em>" : ""}</span></div><p class="desc">${I.doc}<span>${esc(e.brief)}</span></p><ul class="bul">${e.hl.map((h) => `<li>${esc(h)}</li>`).join("")}</ul>${chipsI(e.tags.slice(0, 4))}<a class="more" href="detail.html?type=exp&id=${e.id}">View More <span>&rarr;</span></a></div></article>`).join("");
+  $("tl").innerHTML = EXP.map((e) => `<article class="tli rv${e.cur ? " cur" : ""}"><span class="dot"></span><div class="card"><div class="tl-top"><div class="tl-id">${logoBtn(e.logo, e.co.split(" - ")[0], "logo-co")}<div><h3>${esc(e.pos)}</h3><div class="co">${I.building}<span>${esc(e.co)}</span></div><div class="loc">${I.pin}<span>${esc(e.loc)}</span></div></div></div><span class="dur">${I.cal}<span>${esc(e.dur)}</span>${e.cur ? "<em>Current</em>" : ""}</span></div><p class="desc">${I.doc}<span>${esc(e.brief)}</span></p><div class="vm" data-vm data-vm-items="2" data-vm-label="highlights"><ul class="bul vm-body">${e.hl.map((h) => `<li>${esc(h)}</li>`).join("")}</ul></div>${chipsI(e.tags.slice(0, 4))}<a class="more" href="detail.html?type=exp&id=${e.id}">Full details <span>&rarr;</span></a></div></article>`).join("");
   $("skillGrid").innerHTML = SKILLS.map((s) => `<div class="card sk rv"><h3><b>${s.ic}</b>${esc(s.t)}</h3>${chips(s.items)}</div>`).join("");
   $("ci").innerHTML = [
     [I.mail, "Email", "ganeshtadi01@gmail.com", "mailto:ganeshtadi01@gmail.com", ""],
@@ -122,7 +123,7 @@ function detail() {
     if (r) {
       title = r.t;
       html = shell("index.html#what", "Back to What I Do", "Responsibility", r.t, r.overview, null, r.ic) + body(
-        `<h2>What I do</h2><ul class="chk">${r.does.map((d) => `<li>${esc(d)}</li>`).join("")}</ul><h2>How I work</h2><ol class="steps">${r.process.map(([a, b]) => `<li><b>${esc(a)}</b><span>${esc(b)}</span></li>`).join("")}</ol><h2>What you get</h2><div class="dl">${r.deliver.map((d) => `<div>${esc(d)}</div>`).join("")}</div>${relCards(r.rel)}`,
+        `<h2>What I do</h2><div class="vm" data-vm data-vm-items="5" data-vm-label="of what I do"><ul class="chk vm-body">${r.does.map((d) => `<li>${esc(d)}</li>`).join("")}</ul></div><h2>How I work</h2><ol class="steps">${r.process.map(([a, b]) => `<li><b>${esc(a)}</b><span>${esc(b)}</span></li>`).join("")}</ol><h2>What you get</h2><div class="dl">${r.deliver.map((d) => `<div>${esc(d)}</div>`).join("")}</div>${relCards(r.rel)}`,
         `<h3>Tools &amp; methods</h3>${chips(r.tools)}<h3>Other responsibilities</h3>${NAVLINKS(RESP.map((x) => [`detail.html?type=resp&id=${x.id}`, x.t, x.id]), id)}${CTA}`);
     }
   } else if (type === "exp") {
@@ -130,7 +131,7 @@ function detail() {
     if (e) {
       title = e.pos + " - " + e.co;
       html = shell("index.html#experience", "Back to Experience", "Experience", e.pos, e.brief, [[I.building, e.co], [I.pin, e.loc], [I.cal, e.dur]], logoBtn(e.logo, e.co.split(" - ")[0], "logo-co")) + body(
-        `<h2>Responsibilities &amp; achievements</h2><ul class="chk">${e.all.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>${expExtra(e.id)}`,
+        `<h2>Responsibilities &amp; achievements</h2><div class="vm" data-vm data-vm-items="5" data-vm-label="responsibilities"><ul class="chk vm-body">${e.all.map((d) => `<li>${esc(d)}</li>`).join("")}</ul></div>${expExtra(e.id)}`,
         `<h3>Technologies</h3>${chipsI(e.tags)}<h3>Other roles</h3>${NAVLINKS(EXP.map((x) => [`detail.html?type=exp&id=${x.id}`, x.co, x.id]), id)}${CTA}`);
     }
   } else if (type === "project") {
@@ -161,5 +162,10 @@ function detail() {
 initUI();
 progressBar();
 pointerFx();
+protectPhotos();
 page === "home" ? home() : detail();
 reveal();
+initViewMore();
+/* the awards text clamps by measured height, so measure again once fonts and layout have settled */
+document.fonts && document.fonts.ready.then(() => initViewMore());
+addEventListener("load", () => initViewMore());
