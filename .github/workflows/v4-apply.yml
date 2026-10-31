@@ -1,0 +1,28 @@
+name: Apply v4 patch
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - name: Apply asserted v4 patch
+        run: python3 tools/apply_v4.py
+      - name: Remove the one-shot patch script
+        run: git rm -q tools/apply_v4.py
+      - name: Commit patched files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.js index.html main.js sections.js
+          git commit -m "v4 (3/3): wire Awards, new footer, 4+ years, Nexivo Feb 2023 - Oct 2025, photo in hero (patched from tested files, SHA-verified)"
+          git push origin master
+      - name: Trigger the Pages deploy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref master
