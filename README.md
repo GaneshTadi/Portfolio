@@ -1,12 +1,36 @@
-# React + Vite
+# Tadi Ganesh - Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio of **Tadi Ganesh** - Senior Zoho Developer, Full-Stack Developer and Node.js Integration Engineer (Hyderabad, India).
 
-Currently, two official plugins are available:
+Live site: https://ganeshtadi.github.io/Portfolio/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Sections
+Home (career highlights) - About - Key Achievements - Technical Expertise - Zoho Platform Expertise - Experience - Projects (19, filterable, with detail pop-ups) - Education - Resume (page preview, Zoho WorkDrive link, PDF download) - Contact
 
-## Expanding the ESLint configuration
+## Tech
+A single static page: plain HTML, CSS and JavaScript. No build step, no dependencies.
+Mobile-first and responsive (tested at 360, 390, 768 and 1366 px wide).
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Structure
+```
+index.html                   the whole site (content lives in the data arrays near the bottom)
+images/projects/*.jpg        project screenshots
+images/resume-page-*.jpg     resume preview images
+resume/Ganesh-Tadi-Resume.pdf
+.github/workflows/pages.yml  deploys to GitHub Pages on every push to master
+.nojekyll
+```
+
+## Edit content
+Open `index.html` and edit the data arrays in the `<script>` block:
+`EXP` (experience), `PROJ` (projects), `SKILLS`, `ACH` (achievements), `PLAT` (Zoho platform), `EDU` (education).
+To show a **Live Demo** or **View Code** button on a project, add `demo:"https://..."` or `code:"https://..."` to its entry in `PROJ`.
+
+## Run locally
+Open `index.html` in a browser, or run `python3 -m http.server` and visit http://localhost:8000.
+
+## Deploy
+Pushing to `master` runs the Pages workflow. In the repo go to **Settings -> Pages -> Source: GitHub Actions** (one-time).
+
+## Brand
+Primary `#900C3F`, hover `#7A0A35`, tint `#FFF0F5`, accent `#C70039`.
