@@ -1,0 +1,158 @@
+/* v4: no logo/image zoom or blink, awards, redesigned footer, hero portrait, mobile UX. Loaded last. */
+
+/* ---------- 1. Remove zoom and blink effects (logos, brand logo, project images) ---------- */
+.lz img,.lz:hover img,.lz:focus-visible img{transform:none!important;transition:none!important}
+.blink img,.logo-co img,.lz:hover img,.lz:focus-visible img{animation:none!important;filter:none!important}
+.lz{cursor:pointer}
+.pimg img,.pc:hover .pimg img,.pc:focus-within .pimg img,.hi img{transform:none!important;transition:none!important}
+.tech-ic li:hover{transform:none}
+/* the logos stay clickable (they open the preview) but give a calm, non-zoom hover cue */
+.logo-co:hover,.lz:hover{box-shadow:var(--sh)}
+
+/* ---------- 2. Hero profile card: my photo on the left of my name ---------- */
+.pcard .lg{align-items:center;gap:1rem}
+.lz.avt{flex:none;width:84px;height:84px;border-radius:50%;overflow:hidden;border:3px solid rgba(255,255,255,.85);box-shadow:0 10px 24px -10px rgba(0,0,0,.55);background:#fff}
+.lz.avt img{width:100%;height:100%;object-fit:cover;object-position:center 18%;border-radius:0}
+
+/* ---------- 3. Awards ---------- */
+.awd{background:linear-gradient(180deg,#fff,var(--tint))}
+.aw{display:grid;grid-template-columns:minmax(0,1fr);gap:1.4rem;padding:1.3rem;border-radius:1.6rem;background:#fff;border:1px solid #f1c3d4;box-shadow:var(--sh);position:relative;overflow:hidden}
+.aw:before{content:"";position:absolute;left:0;top:0;right:0;height:5px;background:linear-gradient(90deg,#f5a623,var(--a),var(--p))}
+.aw>*{min-width:0}
+.aw-me{display:flex;align-items:center;gap:1rem;margin:0}
+.lz.aw-ph{flex:none;width:112px;height:112px;border-radius:50%;overflow:hidden;border:4px solid #fff;box-shadow:0 0 0 3px #f5a623,0 14px 28px -12px rgba(120,10,50,.5);background:#fff}
+.aw-ph img{width:100%;height:100%;object-fit:cover;object-position:center 18%}
+.aw-me figcaption{display:grid;gap:.15rem;min-width:0}
+.aw-me figcaption b{font-size:1.15rem;color:var(--ink);line-height:1.2}
+.aw-me figcaption span{color:var(--g5);font-size:.9rem;font-weight:600}
+.aw-me figcaption em{display:inline-flex;align-items:center;gap:.35rem;margin-top:.35rem;font-style:normal;font-size:.8rem;font-weight:800;color:#8a5a00;background:#fff3d6;border:1px solid #f5d38a;border-radius:99px;padding:.25rem .65rem;width:max-content;max-width:100%}
+.aw-me figcaption em .ico{color:#d98a00}
+.aw-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#8a5a00;background:#fff3d6;border:1px solid #f5d38a;border-radius:99px;padding:.3rem .8rem}
+.aw-badge .ico{color:#d98a00}
+.aw-main h3{font-size:clamp(1.25rem,4.2vw,1.7rem);line-height:1.25;margin:.7rem 0 .6rem;color:var(--ink)}
+.aw-main p{color:var(--g7)}
+.aw-meta{display:grid;gap:.5rem;margin:1rem 0 1.2rem}
+.aw-meta li{display:flex;align-items:flex-start;gap:.55rem;font-size:.92rem;font-weight:600;color:var(--g7)}
+.aw-meta .ico{color:var(--p);margin-top:.15em}
+.aw-btn{width:100%}
+.aw-cert{margin:0}
+.lz.aw-cb{display:block;width:100%;border-radius:1rem;overflow:hidden;border:1px solid var(--g2);box-shadow:0 18px 36px -20px rgba(60,10,30,.5);background:#fff}
+.aw-cb img{display:block;width:100%;height:auto}
+.aw-cert figcaption{margin-top:.6rem;text-align:center;font-size:.8rem;color:var(--g5);font-weight:600}
+@media(min-width:640px){.aw{padding:1.8rem}.aw-btn{width:auto}}
+@media(min-width:900px){
+  .aw{grid-template-columns:230px minmax(0,1fr);grid-template-areas:"me main" "cert cert";gap:1.8rem 2rem;padding:2.2rem}
+  .aw-me{grid-area:me;flex-direction:column;text-align:center}.aw-me figcaption{justify-items:center}
+  .lz.aw-ph{width:190px;height:190px}
+  .aw-main{grid-area:main;align-self:center}.aw-cert{grid-area:cert;max-width:760px;margin:0 auto;width:100%}
+}
+@media(min-width:1180px){
+  .aw{grid-template-columns:230px minmax(0,1fr) minmax(0,1.05fr);grid-template-areas:"me main cert";align-items:center}
+  .aw-cert{max-width:none}
+}
+
+/* ---------- 4. Redesigned footer ---------- */
+.ft4{position:relative;margin-top:2.5rem;color:#e9d3dc;background:linear-gradient(160deg,#12030a,#2f0716 55%,#5b0a2a);overflow:hidden}
+.ft4:before,.ft4:after{content:"";position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(199,0,57,.4),transparent 70%)}
+.ft4:before{width:380px;height:380px;right:-120px;top:20%}.ft4:after{width:300px;height:300px;left:-100px;bottom:-110px}
+.ft4-wave{position:absolute;top:-1px;left:0;right:0;height:44px;line-height:0;color:var(--g1);z-index:1}
+.ft4-wave svg{width:200%;height:100%;fill:currentColor;animation:wave 16s linear infinite}
+.ft4-in{position:relative;z-index:2;padding:4.6rem 1.1rem 1.2rem}
+.ft4-cta{display:grid;gap:1.2rem;padding:1.5rem;border-radius:1.5rem;background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(6px);margin-bottom:2.2rem}
+.ft4-eb{display:inline-flex;align-items:center;gap:.5rem;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#ffb3cc}
+.ft4-eb:before{content:"";width:9px;height:9px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 0 rgba(61,220,132,.7);animation:livePulse 2s ease-out infinite}
+@keyframes livePulse{70%,100%{box-shadow:0 0 0 10px rgba(61,220,132,0)}}
+.ft4-cta h2{color:#fff;font-size:clamp(1.35rem,4.6vw,2rem);line-height:1.2;margin:.5rem 0 .5rem}
+.ft4-cta p{color:#f1d3de;max-width:36rem;font-size:.95rem}
+.ft4-act{display:grid;gap:.7rem}
+.ft4 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:48px;border-radius:99px;font-weight:800;text-align:center}
+.ft4-b1{background:#25D366;color:#073b1d;border:0}.ft4-b1:hover{background:#1ebe5a}
+.ft4-b2{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.55)}.ft4-b2:hover{background:#fff;color:var(--p)}
+.ft4-g{display:grid;gap:2rem}
+.ft4-me{display:grid;grid-template-columns:auto 1fr;gap:.9rem 1rem;align-items:center;align-content:start}
+.lz.ft4-av{width:96px;height:96px;border-radius:50%;overflow:hidden;border:3px solid #fff;box-shadow:0 0 0 3px rgba(255,179,204,.55),0 14px 28px -12px rgba(0,0,0,.7);background:#fff}
+.ft4-av img{width:100%;height:100%;object-fit:cover;object-position:center 18%}
+.ft4-id{min-width:0}
+.ft4-n{font-size:1.4rem;font-weight:800;color:#fff;line-height:1.15}
+.ft4-r{color:#ffb3cc;font-weight:700;font-size:.95rem;margin-top:.15rem}
+.ft4-w{display:flex;align-items:center;gap:.4rem;margin-top:.35rem;font-size:.86rem;color:#e9d3dc}.ft4-w .ico{color:#ffb3cc}
+.ft4-bio{grid-column:1/-1;font-size:.92rem;max-width:26rem}
+.ft4-s{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:.6rem}
+.ft4-s a{width:46px;height:46px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;transition:transform .25s,background .25s}
+.ft4-s a:hover{transform:translateY(-4px);background:var(--a)}
+.ft4-s .ico{width:20px;height:20px}
+.ft4-h{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:#ffb3cc;font-weight:800;margin-bottom:.7rem}
+.ft4-h2{margin-top:1.4rem}
+.ft4 ul.ft4-l,.ft4-l ul{display:grid;gap:.1rem}
+.ft4-l a{position:relative;display:inline-flex;align-items:center;gap:.55rem;min-height:40px;color:#e9d3dc;text-decoration:none;transition:color .2s,transform .2s;overflow-wrap:anywhere}
+.ft4-l a:after{content:"";position:absolute;left:0;bottom:6px;height:2px;width:0;background:#ffb3cc;transition:width .3s}
+.ft4-l a:hover{color:#fff;transform:translateX(4px)}.ft4-l a:hover:after{width:100%}
+.ft4-l .ico{color:#ffb3cc}
+/* explore links: two columns on phones */
+nav.ft4-l ul{grid-template-columns:1fr 1fr;column-gap:1rem}
+.ft4-st{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem;margin:2.2rem 0 1.4rem}
+.ft4-st li{padding:.9rem .6rem;text-align:center;border-radius:1rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16)}
+.ft4-st b{display:block;font-size:1.5rem;color:#fff;line-height:1.1}.ft4-st span{font-size:.78rem;color:#ffc4d8;font-weight:600}
+.ft4-bar{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:.9rem;align-items:center;justify-content:space-between;padding:1.1rem 1.1rem 6.2rem;border-top:1px solid rgba(255,255,255,.14);font-size:.84rem}
+.ft4-top{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;padding:.5rem 1.1rem;border-radius:99px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1);color:#fff;font-weight:700;cursor:pointer;transition:background .2s,transform .2s}
+.ft4-top:hover{background:var(--a);transform:translateY(-3px)}
+.ft4-top .ico{animation:bob 2.2s ease-in-out infinite}
+@media(min-width:640px){
+  .ft4-in{padding:4.8rem 1.75rem 1.4rem}.ft4-cta{grid-template-columns:1.4fr auto;align-items:center;padding:2rem}.ft4-act{grid-template-columns:auto auto}
+  .ft4-g{grid-template-columns:1fr 1fr}.ft4-me{grid-column:1/-1}
+  .ft4-st{grid-template-columns:repeat(4,1fr)}.ft4-bar{padding:1.1rem 1.75rem 2rem}
+}
+@media(min-width:900px){
+  .ft4-g{grid-template-columns:1.5fr .9fr 1.2fr;gap:2.6rem}.ft4-me{grid-column:auto}
+  nav.ft4-l ul{grid-template-columns:1fr 1fr}
+}
+
+/* ---------- 5. Mobile UX ---------- */
+/* Ideabox x Zoho: tidy stacked card, full-width action, diagram as a vertical flow */
+@media(max-width:899px){
+  #ideabox.sec{padding:3rem 0}
+  .ib{padding:1.4rem 1.15rem;gap:1.4rem;border-radius:1.3rem}
+  .ib h2{font-size:1.55rem}
+  .ib p{font-size:.95rem}
+  .ib .chips{gap:.4rem;margin:1rem 0 1.2rem}
+  .ib .chips span{font-size:.74rem;padding:.3rem .65rem}
+  .ib .btn{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center}
+  .dg{display:grid;grid-template-columns:1fr;gap:.2rem;justify-items:center;padding:1rem;border-radius:1.1rem;background:rgba(255,255,255,.07);border:1px dashed rgba(255,255,255,.3)}
+  .dg .nd{width:100%;max-width:260px;height:auto;padding:.9rem .8rem;border-radius:1rem}
+  .dg .ar{display:grid;grid-auto-flow:column;align-items:center;gap:.5rem;padding:.2rem 0}
+  .dg .ar b{display:inline-block;transform:rotate(90deg);animation:none;font-size:1.4rem}
+}
+@media(max-width:480px){
+  .sec{padding:3.2rem 0}.sh h2{font-size:1.5rem}.sh p{font-size:.95rem}
+  .hero h1{font-size:2rem}
+  .stats{gap:.6rem}.stat{padding:.85rem .6rem}.stat b{font-size:1.55rem}
+  .card{border-radius:1.1rem}
+  .tabs{margin-left:-1.1rem;margin-right:-1.1rem;padding:0 1.1rem .5rem;scroll-snap-type:x proximity}.tab{scroll-snap-align:start}
+  .more{display:inline-flex;align-items:center;min-height:44px}
+  .pcard .lg h2{font-size:1.3rem}
+  .btn{min-height:46px}
+  .cta .btn{width:100%;justify-content:center;text-align:center}
+}
+/* sticky section chips: phones and small tablets only */
+.qj{display:none}
+@media(max-width:899px){
+  .qj{display:flex;gap:.45rem;position:sticky;top:68px;z-index:55;overflow-x:auto;padding:.55rem 1.1rem;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--g2);scrollbar-width:none;scroll-snap-type:x proximity}
+  .qj::-webkit-scrollbar{display:none}
+  .qj a{flex:none;scroll-snap-align:center;min-height:38px;display:inline-flex;align-items:center;padding:.3rem .95rem;border-radius:99px;font-size:.84rem;font-weight:700;color:var(--g7);background:#fff;border:1.5px solid var(--g2);text-decoration:none;transition:background .2s,color .2s,border-color .2s}
+  .qj a.on{background:var(--p);border-color:var(--p);color:#fff}
+  html{scroll-padding-top:120px}
+}
+/* bottom action bar: phones only */
+.mbar{display:none}
+@media(max-width:640px){
+  .mbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:65;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-top:1px solid var(--g2);box-shadow:0 -10px 26px -16px rgba(60,10,30,.45);padding-bottom:env(safe-area-inset-bottom)}
+  .mbar a{display:grid;justify-items:center;align-content:center;gap:.15rem;min-height:56px;padding:.35rem .2rem;color:var(--g7);font-size:.68rem;font-weight:700;text-decoration:none}
+  .mbar .ico{width:1.35rem;height:1.35rem}
+  .mbar a:active{background:var(--tint)}
+  .mbar .mb-wa{color:#128c4a}
+  /* the bar replaces the floating buttons' bottom offset */
+  .has-mbar .wa{bottom:calc(68px + env(safe-area-inset-bottom))}
+  .has-mbar .up{bottom:calc(142px + env(safe-area-inset-bottom))}
+  .ft4-bar{padding-bottom:6.4rem}
+}
+@media(prefers-reduced-motion:reduce){.ft4-wave svg,.ft4-top .ico,.ft4-eb:before{animation:none!important}}
