@@ -29,6 +29,7 @@ export const IMG = {
   19: "public/images/projects/logos/Zoho One EdTech Dashboard Mockup.png",
   20: "public/images/projects/logos/Migration Overview Dashboard.png"
 };
+export const PHOTO = "public/images/projects/logos/Ganesh Tadi.png", AWARD = "public/images/projects/logos/Web Wizard Award.jpg";
 const LOGO = { tw: "public/images/projects/logos/techworks-talent.svg", asm: "public/images/projects/logos/ASM.png", nx: "public/images/projects/logos/Nexivo.png" };
 const FILES = "public/images/projects/logos/files-com.svg", WDL = "public/images/projects/logos/zohoworkdrive.png", NODE = "images/icons/si-nodedotjs.svg";
 const ONERR = `onerror="this.style.display='none'"`;
@@ -47,7 +48,7 @@ export function patchData(EXP, CATS) {
 const ROLES = [
   { id: "tw", now: true, per: "Now", t: "Senior Zoho Developer", co: "Techworks Talent", loc: "Chennai", p: "Project manager and team lead for Zoho engagements: blueprint, scope, solutioning, client communication, Ideabox AI integration and extension development." },
   { id: "asm", per: "Nov 2025 - Oct 2026", t: "Zoho One Developer", co: "ASM Process Automation", loc: "Hyderabad, India", p: "Process automation across Zoho One for clients in India, UAE, Saudi Arabia and Oman, plus a 4+ TB Files.com to WorkDrive migration engine." },
-  { id: "nx", per: "Mar 2023 - Oct 2025", t: "Lead Developer & Full-Stack Developer", co: "Nexivo, Zoho Premium Partner", loc: "Hyderabad, India", p: "Grew from Technical Developer to Senior Developer to Lead Developer of the product team. Built ZoomBackup.cloud and the Zoho extension portfolio." }
+  { id: "nx", per: "Feb 2023 - Oct 2025", t: "Lead Developer & Full-Stack Developer", co: "Nexivo, Zoho Premium Partner", loc: "Hyderabad, India", p: "Grew from Technical Developer to Senior Developer to Lead Developer of the product team. Built ZoomBackup.cloud and the Zoho extension portfolio." }
 ];
 const LADDER = [["Step 1", "Technical Developer", "Built Zoho extensions and API integrations"], ["Step 2", "Senior Developer", "Owned larger builds and integrations end to end"], ["Step 3", "Lead Developer", "Led the product team at Nexivo"]];
 

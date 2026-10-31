@@ -3,6 +3,7 @@ import { progressBar, particles, rotator, countUps, pointerFx } from "./fx.js";
 import { patchData, MORE_PROJECTS, roleHTML, asmHTML, initExt, extDetailParts, expExtra, migBlock, initMig, IMG } from "./sections.js";
 import { I, techStrip, chipsI, logoBtn, techIcon, iconImg } from "./icons.js";
 import { initUI, renderFooter, waLink, WA_DISPLAY } from "./ui.js";
+import { awardsHTML, footerHTML, initQuickJump, initMobileBar } from "./v4.js";
 patchData(EXP, CATS);
 
 const $ = (i) => document.getElementById(i);
@@ -10,6 +11,7 @@ const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&
 const page = document.body.dataset.page;
 document.documentElement.classList.add("js");
 renderFooter();
+footerHTML();
 
 /* Project data is read in place from the original repo module (src/data/projects.js). */
 const ORDER = [3, 11, 12, 15, 6, 2, 16, 17, 4, 5, 7, 8, 9, 10, 13, 14, 18, 19, 1];
@@ -69,6 +71,9 @@ function home() {
     e.preventDefault(); const f = new FormData(e.target);
     location.href = `mailto:ganeshtadi01@gmail.com?subject=${encodeURIComponent("Portfolio enquiry from " + f.get("n"))}&body=${encodeURIComponent(f.get("m") + "\n\n" + f.get("n") + " (" + f.get("e") + ")")}`;
   });
+  $("awardsBody").innerHTML = awardsHTML();
+  initQuickJump();
+  initMobileBar();
   projects();
   initExt(reveal);
   const links = [...document.querySelectorAll(".nav a[data-id]")], secs = links.map((a) => $(a.dataset.id));
