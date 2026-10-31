@@ -18,6 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Fetch official product logos
+        run: node tools/fetch-icons.mjs
+      - name: Validate that every referenced file exists
+        run: node tools/validate.mjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
