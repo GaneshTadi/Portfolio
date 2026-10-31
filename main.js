@@ -1,4 +1,7 @@
 import { RESP, EXP, SKILLS, STATS, WD, LINKS, CATS } from "./data.js";
+import { progressBar, particles, rotator, countUps, pointerFx } from "./fx.js";
+import { patchData, MORE_PROJECTS, roleHTML, asmHTML, initExt, extDetailParts, expExtra, migBlock, initMig } from "./extras.js";
+patchData(EXP, CATS);
 
 const $ = (i) => document.getElementById(i);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -11,7 +14,7 @@ const ORDER = [3, 11, 12, 15, 6, 2, 16, 17, 4, 5, 7, 8, 9, 10, 13, 14, 18, 19, 1
 const LOGO_IDS = [2, 3];
 function toP(r) {
   return {
-    id: r.id, t: r.title, cat: r.id >= 15 ? "One" : r.category, d: r.description || "", ov: r.longDescription || r.description || "",
+    id: r.id, t: r.title, cat: r.id >= 15 && r.id <= 19 ? "One" : r.category, d: r.description || "", ov: r.longDescription || r.description || "",
     img: r.image ? "public/" + encodeURI(String(r.image).replace(/^\//, "")) : "",
     tech: r.technologies || [], feat: r.features || [], ch: r.challenges || "", role: r.role || "", demo: LINKS[r.id] || ""
   };
@@ -19,10 +22,10 @@ function toP(r) {
 let PROJ = [];
 try {
   const m = await import("./src/data/projects.js");
-  PROJ = m.projects.map(toP).sort((a, b) => ORDER.indexOf(a.id) - ORDER.indexOf(b.id));
+  PROJ = [...MORE_PROJECTS, ...m.projects].map(toP).sort((a, b) => ORDER.indexOf(a.id) - ORDER.indexOf(b.id));
 } catch (e) { console.warn("Projects unavailable", e); }
 const catLabel = (c) => (c === "One" ? "Zoho One Solution" : CATS[c] || "Project");
-const ICON = { zoho: "🧩", fullstack: "💻", web: "🌐", One: "🏢" };
+const ICON = { zoho: "🧩", fullstack: "💻", web: "🌐", One: "🏢", migration: "🚚" };
 
 /* shared header / footer behaviour */
 const hd = $("hd"), up = $("up");
@@ -34,14 +37,19 @@ up.addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
 function reveal() {
   const els = [...document.querySelectorAll(".rv:not(.in)")];
   if (!("IntersectionObserver" in window)) return els.forEach((e) => e.classList.add("in"));
-  const io = new IntersectionObserver((en) => en.forEach((x) => { if (x.isIntersecting) { x.target.classList.add("in"); io.unobserve(x.target); } }), { threshold: 0.12 });
+  const io = new IntersectionObserver((en) => en.forEach((x) => { if (x.isIntersecting) { const el = x.target; el.style.transitionDelay = Math.min([...el.parentNode.children].indexOf(el), 8) * 70 + "ms"; el.classList.add("in"); setTimeout(() => { el.style.transitionDelay = ""; }, 1300); io.unobserve(el); } }), { threshold: 0.12 });
   els.forEach((e) => io.observe(e));
+  countUps();
 }
 const chips = (a) => `<div class="chips">${a.map((x) => `<span>${esc(x)}</span>`).join("")}</div>`;
 
 /* ---------------- HOME ---------------- */
 function home() {
-  $("stats").innerHTML = STATS.map(([n, l]) => `<div class="stat rv"><b>${n}</b><span>${l}</span></div>`).join("");
+  $("stats").innerHTML = STATS.map(([n, l]) => `<div class="stat rv"><b data-cu="${esc(n)}">${n}</b><span>${l}</span></div>`).join("");
+  $("roleBody").innerHTML = roleHTML();
+  $("asmBody").innerHTML = asmHTML();
+  rotator($("rot"), ["lead Zoho projects", "design blueprints and solutions", "build Zoho extensions", "migrate terabytes of data", "integrate Ideabox AI with Zoho", "automate multi-country operations"]);
+  particles($("fxc"));
   $("respGrid").innerHTML = RESP.map((r) => `<article class="card rc rv"><div class="ic">${r.ic}</div><h3>${esc(r.t)}</h3><p>${esc(r.brief)}</p><ul class="mini">${r.pts.map((p) => `<li>${esc(p)}</li>`).join("")}</ul><a class="more" href="detail.html?type=resp&id=${r.id}">View More <span>&rarr;</span></a></article>`).join("");
   $("tl").innerHTML = EXP.map((e) => `<article class="tli rv${e.cur ? " cur" : ""}"><span class="dot"></span><div class="card"><div class="tl-top"><div><h3>${esc(e.pos)}</h3><div class="co">${esc(e.co)} &middot; ${esc(e.loc)}</div></div><span class="dur">${esc(e.dur)}${e.cur ? "<em>Current</em>" : ""}</span></div><p>${esc(e.brief)}</p><ul class="bul">${e.hl.map((h) => `<li>${esc(h)}</li>`).join("")}</ul>${chips(e.tags.slice(0, 4))}<a class="more" href="detail.html?type=exp&id=${e.id}">View More <span>&rarr;</span></a></div></article>`).join("");
   $("skillGrid").innerHTML = SKILLS.map((s) => `<div class="card sk rv"><h3><b>${s.ic}</b>${esc(s.t)}</h3>${chips(s.items)}</div>`).join("");
@@ -58,6 +66,7 @@ function home() {
     location.href = `mailto:ganeshtadi01@gmail.com?subject=${encodeURIComponent("Portfolio enquiry from " + f.get("n"))}&body=${encodeURIComponent(f.get("m") + "\n\n" + f.get("n") + " (" + f.get("e") + ")")}`;
   });
   projects();
+  initExt(reveal);
   const links = [...document.querySelectorAll(".nav a[data-id]")], secs = links.map((a) => $(a.dataset.id));
   addEventListener("scroll", () => { let cur = ""; secs.forEach((s) => { if (s && s.getBoundingClientRect().top < 140) cur = s.id; }); links.forEach((a) => a.classList.toggle("on", a.dataset.id === cur)); }, { passive: true });
 }
@@ -66,7 +75,7 @@ function projects() {
   const grid = $("projGrid"), tabs = $("tabs"), btn = $("moreBtn");
   if (!PROJ.length) { grid.innerHTML = '<p class="rv">Projects are loading, please refresh.</p>'; return; }
   const FIRST = 6; let filter = "all", all = false;
-  const defs = [["all", "All"], ["zoho", "Zoho Extensions"], ["One", "Zoho One"], ["fullstack", "Full-Stack"], ["web", "Websites"]].filter(([k]) => k === "all" || PROJ.some((p) => p.cat === k));
+  const defs = [["all", "All"], ["zoho", "Zoho Extensions"], ["One", "Zoho One"], ["migration", "Data Migration"], ["fullstack", "Full-Stack"], ["web", "Websites"]].filter(([k]) => k === "all" || PROJ.some((p) => p.cat === k));
   tabs.innerHTML = defs.map(([k, l]) => `<button class="tab${k === filter ? " on" : ""}" data-k="${k}" role="tab">${l} (${k === "all" ? PROJ.length : PROJ.filter((p) => p.cat === k).length})</button>`).join("");
   const draw = () => {
     const list = PROJ.filter((p) => filter === "all" || p.cat === filter), shown = all ? list : list.slice(0, FIRST);
@@ -110,7 +119,7 @@ function detail() {
     if (e) {
       title = e.pos + " - " + e.co;
       html = shell("index.html#experience", "Back to Experience", "Experience", e.pos, e.brief, [e.co, e.loc, e.dur]) + body(
-        `<h2>Responsibilities &amp; achievements</h2><ul class="chk">${e.all.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>`,
+        `<h2>Responsibilities &amp; achievements</h2><ul class="chk">${e.all.map((d) => `<li>${esc(d)}</li>`).join("")}</ul>${expExtra(e.id)}`,
         `<h3>Technologies</h3>${chips(e.tags)}<h3>Other roles</h3>${NAVLINKS(EXP.map((x) => [`detail.html?type=exp&id=${x.id}`, x.co, x.id]), id)}${CTA}`);
     }
   } else if (type === "project") {
@@ -121,17 +130,24 @@ function detail() {
       const sec = (h, c) => (c ? `<h2>${h}</h2>${c}` : "");
       html = shell("index.html#projects", "Back to Projects", catLabel(p.cat), p.t, p.d, p.role ? ["Role: " + p.role] : null) + body(
         `<div class="hi${LOGO_IDS.includes(p.id) ? " lo" : ""}">${p.img ? `<img src="${p.img}" alt="${esc(p.t)}">` : ICON[p.cat] || "📦"}</div>` +
-        sec("Overview", `<p style="color:var(--g7)">${esc(p.ov)}</p>`) + sec("Key features", p.feat.length ? `<ul class="chk">${p.feat.map((f) => `<li>${esc(f)}</li>`).join("")}</ul>` : "") + sec("Challenge", p.ch ? `<p style="color:var(--g7)">${esc(p.ch)}</p>` : "") +
+        sec("Overview", `<p style="color:var(--g7)">${esc(p.ov)}</p>`) + (p.id === 20 ? sec("What I built", `<ul class="chk">${p.feat.map((f) => `<li>${esc(f)}</li>`).join("")}</ul>`) + migBlock() : sec("Key features", p.feat.length ? `<ul class="chk">${p.feat.map((f) => `<li>${esc(f)}</li>`).join("")}</ul>` : "") + sec("Challenge", p.ch ? `<p style="color:var(--g7)">${esc(p.ch)}</p>` : "")) +
         `<div class="pn">${pv ? `<a href="detail.html?type=project&id=${pv.id}"><small>&larr; Previous</small>${esc(pv.t)}</a>` : "<span></span>"}${nx ? `<a href="detail.html?type=project&id=${nx.id}"><small>Next &rarr;</small>${esc(nx.t)}</a>` : ""}</div>`,
         `<h3>Technologies</h3>${chips(p.tech)}${p.demo ? `<a class="btn btn-o" style="margin-bottom:.7rem" href="${p.demo}" target="_blank" rel="noopener">Live demo &nearr;</a>` : ""}${CTA}`);
     }
+  }
+  else if (type === "ext") {
+    const x = extDetailParts(id);
+    if (x) { title = x.name; html = shell("index.html#extensions", "Back to Extensions", x.cat, x.name, x.desc, x.meta, x.ic) + body(x.main, x.side); }
   }
   if (!html) html = `<div class="nf wrap"><h1>Page not found</h1><p style="margin:.6rem 0 1.4rem;color:var(--g5)">That detail page does not exist.</p><a class="btn btn-p" href="index.html">Back to home</a></div>`;
   else document.title = `${title} | Tadi Ganesh, Senior Zoho Developer`;
   root.innerHTML = html;
   scrollTo(0, 0);
   reveal();
+  initMig();
 }
 
+progressBar();
+pointerFx();
 page === "home" ? home() : detail();
 reveal();
