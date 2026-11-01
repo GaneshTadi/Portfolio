@@ -74,3 +74,9 @@
 @media(max-width:639px){.vm-btn{width:100%}}
 .vm-body.vm-clamp{position:relative}
 @media(prefers-reduced-motion:reduce){.vm-btn{transition:none}}
+
+/* ---------- 7. Profile card photo: centred in the circle (hero card only) ----------
+   The source photo is an 800x800 square with the head touching the top edge, so cover/object-position
+   could never move it. Scale the image to 88% and nudge it down 6% so the head sits centred with even space. */
+.pcard .ph-lock.avt{background:#fff}
+.pcard .ph-lock.avt img{width:88%;height:88%;margin:6% 6% 0;object-fit:cover;object-position:center top}
