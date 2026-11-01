@@ -21,7 +21,7 @@ export function awardsHTML() {
   <span class="aw-badge">${I.spark}<span>The Web Wizard Award</span></span>
   <h3>For Excellence in Website Development</h3>
   <div class="aw-role" aria-label="Role at the time of the award"><span>${I.building}Lead Developer, Nexivo</span><span>${I.cal}19 September 2025</span></div>
-  <div class="vm" data-vm data-vm-lines="4" data-vm-label="about the award">
+  <div class="vm">
    <div class="vm-body">
     <p>I received this award as the <b>Lead Developer at Nexivo</b>, presented by <b>Ramakrishna Karolla, CEO of Nexivo Consulting Pvt. Ltd.</b>, in recognition of my creativity, technical expertise and dedication to building a seamless digital experience.</p>
     <p>It also recognised the strong, reliable online presence I led for Nexivo, one that reflects the vision and professionalism of the company. I grew at Nexivo from Technical Developer to Senior Developer to Lead Developer of the product team.</p>
